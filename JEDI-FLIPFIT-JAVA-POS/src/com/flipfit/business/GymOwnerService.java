@@ -4,64 +4,134 @@ import com.flipfit.bean.Customer;
 import com.flipfit.bean.GymCentre;
 import com.flipfit.bean.Payment;
 import java.util.List;
+import java.util.Scanner;
 
 public class GymOwnerService {
 
-    /**
-     * Adds a new gym centre to the system.
-     * @param gymCentre The GymCentre object containing the details of the new gym.
-     */
-//    public void addCentre(GymCentre gymCentre) {
-//        // Business logic to add a new gym centre to the database.
-//        System.out.println("Adding new gym centre: " + gymCentre.getName() + " located at " + gymCentre.getAddress());
-//        // This would involve saving the gymCentre object to a data source.
-//    }
+    private static final Scanner in = new Scanner(System.in);
 
-    /**
-     * Views the details of all gym centres owned by the gym owner.
-     * @return A list of GymCentre objects owned by the current gym owner.
-     */
+    public void addCentre() {
+        // Now just prints, no bean used
+        System.out.println("Adding new gym centre... ");
+    }
+
     public List<GymCentre> viewGymDetails() {
-        // Business logic to retrieve all gym details associated with the current owner.
         System.out.println("Fetching details for all your gym centres...");
-        return null; // Placeholder for a real list
+        // Dummy data for demonstration
+        System.out.println("------------------------------------------------------------------");
+        System.out.printf("%-15s %-20s %-20s %n", "Gym ID", "Name", "Location");
+        System.out.println("------------------------------------------------------------------");
+        System.out.printf("%-15s %-20s %-20s %n", "G101", "Fit Hub", "Pune");
+        System.out.printf("%-15s %-20s %-20s %n", "G102", "Powerhouse", "Mumbai");
+        System.out.println("------------------------------------------------------------------");
+        return null;
     }
 
-    /**
-     * Views the list of customers who have booked slots at the gym owner's centres.
-     * @return A list of Customer objects.
-     */
     public List<Customer> viewCustomers() {
-        // Business logic to retrieve the list of customers for the owner's gyms.
         System.out.println("Fetching customer list for your gym centres...");
-        return null; // Placeholder for a real list
+        return null;
     }
 
-    /**
-     * Views the payment history for the gym owner's centres.
-     * @return A list of Payment objects.
-     */
     public List<Payment> viewPayments() {
-        // Business logic to retrieve payment history and financial summaries.
         System.out.println("Fetching payment history...");
-        return null; // Placeholder for a real list
+        return null;
+    }
+
+    public void editDetails() {
+        // This method will now be handled by the nested menu in gymOwnerMenu
     }
 
     /**
-     * Allows the gym owner to edit their personal and business details.
+     * This method handles the entire gym owner menu flow with nested loops.
      */
-    public void editDetails() {
-        // Business logic to update the gym owner's profile (e.g., PAN, Aadhar, GSTIN).
-        System.out.println("Updating gym owner details...");
-    }
-
     public void displayGymOwnerMenu() {
-        System.out.println("\n*** Welcome, Gym Owner! ***");
-        System.out.println("1. Add a new Gym Centre");
-        System.out.println("2. View My Gym Details");
-        System.out.println("3. Manage gym Profile");
-        System.out.println("4. View Booking Details");
-        System.out.println("5. Edit My Details");
-        System.out.println("6. Exit");
+        boolean exitOwnerMenu = false;
+        while (!exitOwnerMenu) {
+            System.out.println("\n*** Welcome, Gym Owner! ***");
+            System.out.println("1. Add a new Gym Centre");
+            System.out.println("2. View My Gym Details");
+            System.out.println("3. View My Customer List");
+            System.out.println("4. View Payments");
+            System.out.println("5. Edit My Details");
+            System.out.println("6. Exit");
+            System.out.print("Enter your choice: ");
+
+            int choice = in.nextInt();
+            in.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:
+                    // Nested loop for adding a new gym centre
+                    boolean continueAdding = true;
+                    while (continueAdding) {
+                        System.out.println("\n--- Add a New Gym Centre ---");
+                        System.out.print("Enter gym name: ");
+                        String name = in.nextLine();
+                        System.out.print("Enter gym city: ");
+                        String city = in.nextLine();
+                        System.out.print("Enter gym state: ");
+                        String state = in.nextLine();
+                        // Call method without passing a bean
+                        addCentre();
+                        System.out.println("Gym Centre with name " + name + " and location " + city + ", " + state + " added. Do you want to add another? (yes/no)");
+                        String response = in.nextLine();
+                        if (response.equalsIgnoreCase("no")) {
+                            continueAdding = false;
+                        }
+                    }
+                    break;
+                case 2:
+                    viewGymDetails();
+                    break;
+                case 3:
+                    viewCustomers();
+                    break;
+                case 4:
+                    viewPayments();
+                    break;
+                case 5:
+                    // Nested menu for editing details
+                    boolean continueEditing = true;
+                    while (continueEditing) {
+                        System.out.println("\n--- Edit My Details ---");
+                        System.out.println("1. Change Name");
+                        System.out.println("2. Change City");
+                        System.out.println("3. Change State");
+                        System.out.println("4. Back to main menu");
+                        System.out.print("Enter your choice: ");
+                        int editChoice = in.nextInt();
+                        in.nextLine(); // Consume newline
+                        switch (editChoice) {
+                            case 1:
+                                System.out.print("Enter new name: ");
+                                String newName = in.nextLine();
+                                System.out.println("Name changed to: " + newName);
+                                break;
+                            case 2:
+                                System.out.print("Enter new city: ");
+                                String newCity = in.nextLine();
+                                System.out.println("City changed to: " + newCity);
+                                break;
+                            case 3:
+                                System.out.print("Enter new state: ");
+                                String newState = in.nextLine();
+                                System.out.println("State changed to: " + newState);
+                                break;
+                            case 4:
+                                continueEditing = false;
+                                break;
+                            default:
+                                System.out.println("Invalid choice. Please try again.");
+                        }
+                    }
+                    break;
+                case 6:
+                    exitOwnerMenu = true;
+                    System.out.println("Exiting Gym Owner menu.");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
     }
 }
