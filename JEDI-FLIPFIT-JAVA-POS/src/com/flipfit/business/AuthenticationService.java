@@ -37,7 +37,7 @@ public class AuthenticationService {
         // Customer newCustomer = new Customer(email, password, name, phone);
     }
 
-    public void registerGymOwner(String name, String email, String password, String phone, String aadhar, String gstNumber) {
+    public void registerGymOwner(String name, String email, String password, String phone, String aadhar, String pan, String gstNumber) {
         // Placeholder for gym owner registration logic
         System.out.println("Registering new gym owner: " + name);
         // Save the new GymOwner object to a database or data store
