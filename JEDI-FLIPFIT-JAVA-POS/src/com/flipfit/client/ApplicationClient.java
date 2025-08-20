@@ -29,15 +29,15 @@ public class ApplicationClient {
         System.out.println("Login request received for user: " + username);
 
         if(role.equalsIgnoreCase("Customer")){
-
+            customerService.displayCustomerMenu();
         }
 
         else if(role.equalsIgnoreCase("Owner")){
-
+            gymOwnerService.displayGymOwnerMenu();
         }
 
         else if(role.equalsIgnoreCase("Admin")){
-
+            adminService.displayAdminMenu();
         }
 
         else {
