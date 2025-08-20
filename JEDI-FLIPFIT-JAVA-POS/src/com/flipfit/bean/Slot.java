@@ -2,7 +2,7 @@ package com.flipfit.bean;
 
 import java.time.LocalTime;
 
-public class Slots {
+public class Slot {
     private int slotId;
     private int gymId;
     private LocalTime startTime;
@@ -10,10 +10,10 @@ public class Slots {
     private int capacity;
     private int bookedCount;
 
-    public Slots() {
+    public Slot() {
     }
 
-    public Slots(int slotId, int gymId, LocalTime startTime, LocalTime endTime, int capacity, int bookedCount) {
+    public Slot(int slotId, int gymId, LocalTime startTime, LocalTime endTime, int capacity, int bookedCount) {
         this.slotId = slotId;
         this.gymId = gymId;
         this.startTime = startTime;
