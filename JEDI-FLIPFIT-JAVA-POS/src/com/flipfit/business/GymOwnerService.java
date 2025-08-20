@@ -11,11 +11,11 @@ public class GymOwnerService {
      * Adds a new gym centre to the system.
      * @param gymCentre The GymCentre object containing the details of the new gym.
      */
-    public void addCentre(GymCentre gymCentre) {
-        // Business logic to add a new gym centre to the database.
-        System.out.println("Adding new gym centre: " + gymCentre.getName() + " located at " + gymCentre.getAddress());
-        // This would involve saving the gymCentre object to a data source.
-    }
+//    public void addCentre(GymCentre gymCentre) {
+//        // Business logic to add a new gym centre to the database.
+//        System.out.println("Adding new gym centre: " + gymCentre.getName() + " located at " + gymCentre.getAddress());
+//        // This would involve saving the gymCentre object to a data source.
+//    }
 
     /**
      * Views the details of all gym centres owned by the gym owner.

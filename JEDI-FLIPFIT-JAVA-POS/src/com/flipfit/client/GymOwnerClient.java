@@ -37,7 +37,7 @@ public class GymOwnerClient {
 
             switch (choice) {
                 case 1:
-                    addCentre();
+//                    addCentre();
                     break;
                 case 2:
                     viewGymDetails();
@@ -60,12 +60,12 @@ public class GymOwnerClient {
         }
     }
 
-    private void addCentre() {
-        System.out.println("Adding a new gym centre...");
-        // You would prompt for gym details here and then call the service layer
-        // For example: gymOwnerService.addCentre(new GymCentre(...));
-        gymOwnerService.addCentre();
-    }
+//    private void addCentre() {
+//        System.out.println("Adding a new gym centre...");
+//        // You would prompt for gym details here and then call the service layer
+//        // For example: gymOwnerService.addCentre(new GymCentre(...));
+//        gymOwnerService.addCentre();
+//    }
 
     private void viewGymDetails() {
         System.out.println("Viewing your gym details...");
