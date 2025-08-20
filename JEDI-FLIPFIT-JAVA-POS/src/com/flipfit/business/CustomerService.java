@@ -14,16 +14,6 @@ public class CustomerService {
         // This would involve querying a database or a data source.
         System.out.println("Fetching your booked slots...");
     }
-
-    /**
-     * Checks for conflicts with existing bookings before a new slot is confirmed.
-     * This is a private, internal method not exposed to the client.
-     */
-    private void checkingBookedConflicts() {
-        // Business logic to check if a new booking request overlaps with any existing booked slots.
-        System.out.println("Checking for booking conflicts...");
-    }
-
     /**
      * Views all available gym centers.
      * @return A list of all available GymCentre objects.

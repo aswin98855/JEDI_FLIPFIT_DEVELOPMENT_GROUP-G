@@ -1,4 +1,4 @@
 package com.flipfit.bean;
 
-public class Slots {
+public class Slot {
 }
