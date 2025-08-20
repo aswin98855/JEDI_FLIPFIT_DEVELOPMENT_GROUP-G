@@ -1,85 +1,53 @@
 package com.flipfit.client;
 
+import com.flipfit.bean.*;
 import com.flipfit.business.CustomerService;
-import java.util.Scanner;
+import com.flipfit.business.PaymentService;
+import com.flipfit.io.FlipFitScanner;
 
 public class CustomerClient {
 
-    private CustomerService customerService;
-    private Scanner in;
+    private static CustomerService customerService = new CustomerService();
+    private static PaymentService paymentService = new PaymentService();
 
-    public CustomerClient() {
-        this.customerService = new CustomerService();
-        this.in = new Scanner(System.in);
-    }
+    public static void menu(Customer customer) {
+        System.out.println("\nWelcome Customer: " + customer.getName());
 
-    public void customerPage() {
         while (true) {
-            System.out.println("----------------------------------------");
-            System.out.println("            Customer Menu");
-            System.out.println("----------------------------------------");
-            System.out.println("1. View Booked Slots");
-            System.out.println("2. View Gym Centers");
-            System.out.println("3. Make Payments");
-            System.out.println("4. Edit Details");
-            System.out.println("5. Exit");
-            System.out.print("Enter your choice: ");
+            System.out.println("\nCustomer Menu:");
+            System.out.println("1. View Gyms");
+            System.out.println("2. View Slots");
+            System.out.println("3. Book Slot");
+            System.out.println("4. Cancel Booking");
+            System.out.println("5. View Bookings");
+            System.out.println("6. Make Payment");
+            System.out.println("7. Logout");
 
-            int choice;
-            try {
-                choice = in.nextInt();
-            } catch (Exception e) {
-                System.out.println("Invalid input. Please enter a number.");
-                in.next();
-                continue;
-            }
-
+            int choice = FlipFitScanner.getInt("Enter choice: ");
             switch (choice) {
-                case 1:
-                    viewBookedSlots();
-                    break;
-                case 2:
-                    viewCenters();
-                    break;
-                case 3:
-                    makePayments();
-                    break;
-                case 4:
-                    editDetails();
-                    break;
-                case 5:
-                    System.out.println("Exiting Customer Menu...");
-                    return;
-                default:
-                    System.out.println("Invalid number. Please try again.");
+                case 1 -> customerService.viewGyms().forEach(System.out::println);
+                case 2 -> customerService.viewSlots().forEach(System.out::println);
+                case 3 -> {
+                    String slotId = FlipFitScanner.getString("Enter Slot ID: ");
+                    String gymId = FlipFitScanner.getString("Enter Gym ID: ");
+                    Booking booking = customerService.bookSlot(customer.getUserId(), slotId, gymId);
+                    System.out.println(booking != null ? "Booking successful: " + booking : "Booking failed!");
+                }
+                case 4 -> {
+                    String bookingId = FlipFitScanner.getString("Enter Booking ID to cancel: ");
+                    boolean success = customerService.cancelBooking(bookingId);
+                    System.out.println(success ? "Cancelled successfully!" : "Invalid booking!");
+                }
+                case 5 -> customerService.viewBookings().forEach(System.out::println);
+                case 6 -> {
+                    String bookingId = FlipFitScanner.getString("Enter Booking ID for payment: ");
+                    double amt = FlipFitScanner.getDouble("Enter amount: ");
+                    Payment p = paymentService.makePayment(bookingId, amt);
+                    System.out.println(p != null ? "Payment Done: " + p : "Payment failed!");
+                }
+                case 7 -> { return; }
+                default -> System.out.println("Invalid choice!");
             }
         }
-    }
-
-    private void viewBookedSlots() {
-        System.out.println("Viewing your booked slots...");
-        customerService.viewBookedSlots();
-    }
-
-    private void viewCenters() {
-        System.out.println("Viewing all available gym centers...");
-        customerService.viewCenters();
-    }
-
-    private void makePayments() {
-        System.out.println("Initiating payment process...");
-        System.out.print("Enter payment type (1 for Credit Card, 2 for Debit Card, etc.): ");
-        int paymentType = in.nextInt();
-        in.nextLine(); // Consume newline
-        System.out.print("Enter payment info: ");
-        String paymentInfo = in.nextLine();
-
-        // This would typically involve a secure payment gateway integration
-        customerService.makePayments(paymentType, paymentInfo);
-    }
-
-    private void editDetails() {
-        System.out.println("Editing your profile details...");
-        customerService.editDetails();
     }
 }

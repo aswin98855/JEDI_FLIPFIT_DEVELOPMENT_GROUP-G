@@ -1,83 +1,31 @@
 package com.flipfit.bean;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 public class Booking {
-    private int bookingId;
-    private int customerId;
-    private int gymId;
-    private int slotId;
-    private String bookingStatus;
-    private LocalDate bookingDate;
-    private LocalTime bookingTime;
+    private String bookingId;
+    private String customerId;
+    private String slotId;
+    private String gymCentreId;
+    private boolean paymentStatus;
 
-    public Booking() {
-    }
-
-    public Booking(int bookingId, int customerId, int gymId, int slotId, String bookingStatus, LocalDate bookingDate, LocalTime bookingTime) {
+    public Booking(String bookingId, String customerId, String slotId, String gymCentreId) {
         this.bookingId = bookingId;
         this.customerId = customerId;
-        this.gymId = gymId;
         this.slotId = slotId;
-        this.bookingStatus = bookingStatus;
-        this.bookingDate = bookingDate;
-        this.bookingTime = bookingTime;
+        this.gymCentreId = gymCentreId;
+        this.paymentStatus = false;
     }
 
-    public int getBookingId() {
-        return bookingId;
-    }
+    public String getBookingId() { return bookingId; }
+    public String getCustomerId() { return customerId; }
+    public String getSlotId() { return slotId; }
+    public String getGymCentreId() { return gymCentreId; }
+    public boolean isPaymentStatus() { return paymentStatus; }
 
-    public void setBookingId(int bookingId) {
-        this.bookingId = bookingId;
-    }
+    public void setPaymentStatus(boolean status) { this.paymentStatus = status; }
 
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
-    public int getGymId() {
-        return gymId;
-    }
-
-    public void setGymId(int gymId) {
-        this.gymId = gymId;
-    }
-
-    public int getSlotId() {
-        return slotId;
-    }
-
-    public void setSlotId(int slotId) {
-        this.slotId = slotId;
-    }
-
-    public String getBookingStatus() {
-        return bookingStatus;
-    }
-
-    public void setBookingStatus(String bookingStatus) {
-        this.bookingStatus = bookingStatus;
-    }
-
-    public LocalDate getBookingDate() {
-        return bookingDate;
-    }
-
-    public void setBookingDate(LocalDate bookingDate) {
-        this.bookingDate = bookingDate;
-    }
-
-    public LocalTime getBookingTime() {
-        return bookingTime;
-    }
-
-    public void setBookingTime(LocalTime bookingTime) {
-        this.bookingTime = bookingTime;
+    @Override
+    public String toString() {
+        return "Booking[" + bookingId + "] Customer=" + customerId + " Slot=" + slotId +
+                " Gym=" + gymCentreId + " Paid=" + paymentStatus;
     }
 }

@@ -1,17 +1,14 @@
 package com.flipfit.bean;
 
 public class Role {
-    private String role;
+    private String roleId;
+    private String name;
 
-    public Role(String role) {
-        this.role = role;
+    public Role(String roleId, String name) {
+        this.roleId = roleId;
+        this.name = name;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
+    public String getRoleId() { return roleId; }
+    public String getName() { return name; }
 }

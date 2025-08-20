@@ -1,96 +1,69 @@
 package com.flipfit.client;
 
-import com.flipfit.business.AdminService;
+import com.flipfit.bean.*;
 import com.flipfit.business.AuthenticationService;
-import com.flipfit.business.CustomerService;
-import com.flipfit.business.GymOwnerService;
-
-import java.util.Scanner;
+import com.flipfit.dao.UserDAO;
+import com.flipfit.io.FlipFitScanner;
 
 public class ApplicationClient {
-    private final Scanner scanner = new Scanner(System.in);
-    AuthenticationService authenticationService = new AuthenticationService();
-    AdminService adminService = new AdminService();
-    GymOwnerService gymOwnerService = new GymOwnerService();
-    CustomerService customerService = new CustomerService();
 
-    public void login() {
+    private static AuthenticationService authService = new AuthenticationService();
 
-        System.out.println("--- Login ---");
-        System.out.print("Enter username: ");
-        String username = scanner.nextLine();
+    public static void main(String[] args) {
+        com.flipfit.dao.BootstrapData.init();
+        System.out.println("===== Welcome to FlipFit Application =====");
 
-        System.out.print("Enter password: ");
-        String password = scanner.nextLine();
+        while (true) {
+            System.out.println("\nMain Menu:");
+            System.out.println("1. Login");
+            System.out.println("2. Register");
+            System.out.println("3. Exit");
+            int choice = FlipFitScanner.getInt("Enter choice: ");
 
-        System.out.println("Enter Role: Customer/Owner/Admin");
-        String role = scanner.nextLine();
-
-        System.out.println("Login request received for user: " + username);
-
-        if(role.equalsIgnoreCase("Customer")){
-            // After successful login, give control to CustomerClient
-            CustomerClient customerClient = new CustomerClient();
-            customerClient.customerPage();
-        }
-
-        else if(role.equalsIgnoreCase("Owner")){
-            gymOwnerService.displayGymOwnerMenu();
-        }
-
-        else if(role.equalsIgnoreCase("Admin")){
-            adminService.displayAdminMenu();
-        }
-
-        else {
-            System.out.println("Invalid Role");
+            switch (choice) {
+                case 1 -> login();
+                case 2 -> register();
+                case 3 -> {
+                    System.out.println("Exiting... Thank you!");
+                    System.exit(0);
+                }
+                default -> System.out.println("Invalid choice!");
+            }
         }
     }
 
-    public void registerCustomer() {
-        System.out.println("--- Customer Registration ---");
-        System.out.print("Enter your name: ");
-        String name = scanner.nextLine();
+    private static void login() {
+        String email = FlipFitScanner.getString("Enter email: ");
+        String password = FlipFitScanner.getString("Enter password: ");
+        User user = authService.login(email, password);
 
-        System.out.print("Enter your email: ");
-        String email = scanner.nextLine();
+        if (user == null) {
+            System.out.println("Invalid credentials!");
+            return;
+        }
 
-        System.out.print("Enter your password: ");
-        String password = scanner.nextLine();
-
-        System.out.print("Enter your phone number: ");
-        String phone = scanner.nextLine();
-
-        System.out.println("Registration received for customer: " + name);
-        authenticationService.registerCustomer(name, email, password, phone);
-        System.out.println("Registration Successful");
+        switch (user.getRole()) {
+            case "ADMIN" -> AdminClient.menu((Admin) user);
+            case "CUSTOMER" -> CustomerClient.menu((Customer) user);
+            case "OWNER" -> GymOwnerClient.menu((GymOwner) user);
+            default -> System.out.println("Unknown role!");
+        }
     }
 
-    public void registerOwner() {
-        System.out.println("--- Gym Owner Registration ---");
-        System.out.print("Enter your name: ");
-        String name = scanner.nextLine();
+    private static void register() {
+        String name = FlipFitScanner.getString("Enter name: ");
+        String email = FlipFitScanner.getString("Enter email: ");
+        String password = FlipFitScanner.getString("Enter password: ");
+        System.out.println("Choose Role: 1. Customer  2. GymOwner");
+        int r = FlipFitScanner.getInt("Enter: ");
 
-        System.out.print("Enter your email: ");
-        String email = scanner.nextLine();
-
-        System.out.print("Enter your password: ");
-        String password = scanner.nextLine();
-
-        System.out.print("Enter your phone number: ");
-        String phone = scanner.nextLine();
-
-        System.out.print("Enter your aadhaar number: ");
-        String aadhaar = scanner.nextLine();
-
-        System.out.print("Enter your PAN number: ");
-        String pan = scanner.nextLine();
-
-        System.out.print("Enter your GST number: ");
-        String gst = scanner.nextLine();
-
-        System.out.println("Registration received for Owner: " + name);
-        authenticationService.registerGymOwner(name, email, password, phone, aadhaar, pan, gst);
-        System.out.println("Registration Successful");
+        User user;
+        if (r == 1) {
+            user = new Customer("C" + (UserDAO.getAllUsers().size() + 1), name, email, password);
+        } else {
+            user = new GymOwner("O" + (UserDAO.getAllUsers().size() + 1), name, email, password);
+        }
+        authService.register(user);
+        System.out.println("Registration successful!");
     }
 }

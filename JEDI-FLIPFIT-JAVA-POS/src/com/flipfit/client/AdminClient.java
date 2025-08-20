@@ -1,47 +1,31 @@
 package com.flipfit.client;
 
+import com.flipfit.bean.Admin;
 import com.flipfit.business.AdminService;
+import com.flipfit.io.FlipFitScanner;
 
 public class AdminClient {
 
-    private AdminService adminService;
+    private static AdminService adminService = new AdminService();
 
-    // Constructor to initialize the AdminService
-    public AdminClient() {
-        this.adminService = new AdminService();
-    }
+    public static void menu(Admin admin) {
+        System.out.println("\nWelcome Admin: " + admin.getName());
 
-    // Parameters for login
-    private String userId;
-    private String password;
+        while (true) {
+            System.out.println("\nAdmin Menu:");
+            System.out.println("1. View All Gyms");
+            System.out.println("2. View All Users");
+            System.out.println("3. View All Bookings");
+            System.out.println("4. Logout");
 
-    // Method to validate a gym owner
-    public void validateOwner() {
-        // Implementation to validate a gym owner
-        // For example, calling a method in AdminService
-        // adminService.validateGymOwner(ownerId);
-    }
-
-    // Method to view pending requests (for gym owners or centers)
-    public void viewPendingRequests() {
-        // Implementation to view pending requests
-        // For example, calling a method in AdminService
-        // adminService.viewPendingGymOwnerRequests();
-        // adminService.viewPendingGymRequests();
-    }
-
-    // Method to delete a user
-    public void deleteUsers(int userId) {
-        // Implementation to delete a user by their ID
-        // For example, calling a method in AdminService
-        // adminService.deleteUser(userId);
-    }
-
-    // Method for user login
-    public boolean login(String userId, String password) {
-        // Implementation for login
-        // This method would typically check the provided userId and password against stored credentials
-        // It returns true if the login is successful, false otherwise.
-        return true; // Placeholder
+            int choice = FlipFitScanner.getInt("Enter choice: ");
+            switch (choice) {
+                case 1 -> adminService.viewAllCentres().forEach(System.out::println);
+                case 2 -> adminService.viewAllUsers().forEach(System.out::println);
+                case 3 -> adminService.viewAllBookings().forEach(System.out::println);
+                case 4 -> { return; }
+                default -> System.out.println("Invalid choice!");
+            }
+        }
     }
 }
