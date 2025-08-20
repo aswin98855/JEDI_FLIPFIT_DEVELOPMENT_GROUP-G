@@ -1,5 +1,7 @@
 package com.flipfit.bean;
 import java.util.ArrayList;
+import java.util.List;
+
 public class GymCentre {
 
     private int centreId;
@@ -11,9 +13,10 @@ public class GymCentre {
     private String city;
     private String state;
     private String pincode;
-
+    private List<String> facilities;
     public GymCentre() {
     }
+
 
     public int getCentreId() {
         return centreId;
@@ -85,5 +88,13 @@ public class GymCentre {
 
     public void setPincode(String pincode) {
         this.pincode = pincode;
+    }
+
+    public List<String> getFacilities() {
+        return facilities;
+    }
+
+    public void setFacilities(List<String> facilities) {
+        this.facilities = facilities;
     }
 }
