@@ -2,7 +2,7 @@ package com.flipfit.bean;
 
 public class User extends Role {
     private int userId;
-    private String userName;
+    private String fullName;
     private String email;
     private String password;
     private long userPhone;
@@ -17,12 +17,12 @@ public class User extends Role {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return fullName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {
