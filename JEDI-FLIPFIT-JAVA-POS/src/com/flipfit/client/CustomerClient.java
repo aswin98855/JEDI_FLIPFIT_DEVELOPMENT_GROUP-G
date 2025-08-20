@@ -1,6 +1,5 @@
 package com.flipfit.client;
 
-import com.flipfit.bean.Customer;
 import com.flipfit.business.CustomerService;
 import java.util.Scanner;
 

@@ -29,7 +29,9 @@ public class ApplicationClient {
         System.out.println("Login request received for user: " + username);
 
         if(role.equalsIgnoreCase("Customer")){
-            customerService.displayCustomerMenu();
+            // After successful login, give control to CustomerClient
+            CustomerClient customerClient = new CustomerClient();
+            customerClient.customerPage();
         }
 
         else if(role.equalsIgnoreCase("Owner")){
