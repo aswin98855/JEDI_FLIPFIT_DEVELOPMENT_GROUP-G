@@ -9,6 +9,17 @@ public class User extends Role {
     private String city;
     private int pinCode;
 
+    public User(String role, int userId, String fullName, String email, String password, long userPhone, String city, int pinCode) {
+        super(role);
+        this.userId = userId;
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+        this.userPhone = userPhone;
+        this.city = city;
+        this.pinCode = pinCode;
+    }
+
     public int getUserId() {
         return userId;
     }

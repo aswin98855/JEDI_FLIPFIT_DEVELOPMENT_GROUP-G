@@ -7,7 +7,7 @@ public class GymCentre {
     private int centreId;
     private int ownerId;
     private String name;
-    private ArrayList slots;
+    private List<String> slots;
     private int capacity;
     private boolean approved;
     private String city;
@@ -17,6 +17,18 @@ public class GymCentre {
     public GymCentre() {
     }
 
+    public GymCentre(int centreId, int ownerId, String name, List<String> slots, int capacity, boolean approved, String city, String state, String pincode, List<String> facilities) {
+        this.centreId = centreId;
+        this.ownerId = ownerId;
+        this.name = name;
+        this.slots = slots;
+        this.capacity = capacity;
+        this.approved = approved;
+        this.city = city;
+        this.state = state;
+        this.pincode = pincode;
+        this.facilities = facilities;
+    }
 
     public int getCentreId() {
         return centreId;
@@ -42,11 +54,11 @@ public class GymCentre {
         this.name = name;
     }
 
-    public ArrayList getSlots() {
+    public List<String> getSlots() {
         return slots;
     }
 
-    public void setSlots(ArrayList slots) {
+    public void setSlots(List<String> slots) {
         this.slots = slots;
     }
 

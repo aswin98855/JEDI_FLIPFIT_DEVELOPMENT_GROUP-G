@@ -25,6 +25,8 @@ public class FlipFitScanner {
                     break;
                 case 4: System.out.println("Application exited");
                     System.exit(0);
+                default: System.out.println("Invalid option");
+                    break;
             }
         }
     }

@@ -6,6 +6,13 @@ public class Admin extends Role {
     private String emailId;
     private String password;
 
+    public Admin(String role, int adminId, String emailId, String password) {
+        super(role);
+        this.adminId = adminId;
+        this.emailId = emailId;
+        this.password = password;
+    }
+
     public int getAdminId() {
         return adminId;
     }

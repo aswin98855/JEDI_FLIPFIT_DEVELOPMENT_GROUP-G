@@ -6,29 +6,29 @@ import com.flipfit.bean.GymOwner;
 
 public class AuthenticationService {
 
-    public User loginUser(String email, String password) {
-        // Hardcoded check for admin credentials
-        if ("admin@flipfit.com".equals(email) && "admin123".equals(password)) {
-            System.out.println("Admin login successful!");
-            User adminUser = new User();
-            adminUser.setEmail("admin@flipfit.com");
-            adminUser.setPassword("admin123");
-            adminUser.setName("Admin");
-            return adminUser;
-        }
-
-        // Placeholder for user login logic.
-        // In a real application, you would check a database here.
-        System.out.println("Attempting to log in user with email: " + email);
-        if (email.equals("admin@example.com") && password.equals("pass")) {
-            User user = new User();
-            user.setEmail("admin@example.com");
-            user.setPassword("pass");
-            user.setName("Example Admin");
-            return user;
-        }
-        return null;
-    }
+//    public User loginUser(String email, String password) {
+//        // Hardcoded check for admin credentials
+//        if ("admin@flipfit.com".equals(email) && "admin123".equals(password)) {
+//            System.out.println("Admin login successful!");
+//            User adminUser = new User();
+//            adminUser.setEmail("admin@flipfit.com");
+//            adminUser.setPassword("admin123");
+//            adminUser.setName("Admin");
+//            return adminUser;
+//        }
+//
+//        // Placeholder for user login logic.
+//        // In a real application, you would check a database here.
+//        System.out.println("Attempting to log in user with email: " + email);
+//        if (email.equals("admin@example.com") && password.equals("pass")) {
+//            User user = new User();
+//            user.setEmail("admin@example.com");
+//            user.setPassword("pass");
+//            user.setName("Example Admin");
+//            return user;
+//        }
+//        return null;
+//    }
 
     public void registerCustomer(String name, String email, String password, String phone) {
         // Placeholder for customer registration logic
