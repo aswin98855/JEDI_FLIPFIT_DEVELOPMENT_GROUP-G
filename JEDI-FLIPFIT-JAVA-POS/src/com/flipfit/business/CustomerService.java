@@ -48,7 +48,7 @@ public class CustomerService {
         System.out.println("\n*** Welcome, Customer! ***");
         System.out.println("1. View Booked Slots");
         System.out.println("2. View Available Gyms");
-        System.out.println("3. Make a Payment");
+        System.out.println("3. Book Slot");
         System.out.println("4. Edit My Details");
         System.out.println("5. Exit");
     }

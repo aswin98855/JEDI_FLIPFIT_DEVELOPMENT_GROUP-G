@@ -59,8 +59,8 @@ public class GymOwnerService {
         System.out.println("\n*** Welcome, Gym Owner! ***");
         System.out.println("1. Add a new Gym Centre");
         System.out.println("2. View My Gym Details");
-        System.out.println("3. View My Customer List");
-        System.out.println("4. View Payments");
+        System.out.println("3. Manage gym Profile");
+        System.out.println("4. View Booking Details");
         System.out.println("5. Edit My Details");
         System.out.println("6. Exit");
     }
