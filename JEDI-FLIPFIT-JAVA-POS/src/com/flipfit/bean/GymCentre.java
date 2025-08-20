@@ -1,5 +1,4 @@
 package com.flipfit.bean;
 
-public class Admin {
-
+public class GymCentre {
 }
