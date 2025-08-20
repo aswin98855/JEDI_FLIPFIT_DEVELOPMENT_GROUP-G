@@ -67,4 +67,16 @@ public class AdminService {
         System.out.println("Fetching all registered gym owners...");
         return null;
     }
+
+    public void displayAdminMenu() {
+        System.out.println("\n*** Welcome, Admin! ***");
+        System.out.println("1. Approve Gym Owner Registration");
+        System.out.println("2. View List of Registered Gyms by id");
+        System.out.println("3. View List of Registered Gyms by name");
+        System.out.println("4. View List of Pending Gyms by id");
+        System.out.println("5. View List of Pending Gyms by name");
+        System.out.println("6. View List of Registered Customers");
+        System.out.println("7. Edit Admin Profile");
+        System.out.println("8. Exit");
+    }
 }
