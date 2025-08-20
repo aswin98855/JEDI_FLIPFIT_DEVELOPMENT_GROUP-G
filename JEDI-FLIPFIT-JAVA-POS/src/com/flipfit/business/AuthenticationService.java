@@ -4,7 +4,7 @@ import com.flipfit.bean.User;
 import com.flipfit.bean.Customer;
 import com.flipfit.bean.GymOwner;
 
-public class AuthenticationServiceImpl implements AuthenticationService {
+public class AuthenticationService {
 
     public User loginUser(String email, String password) {
         // Hardcoded check for admin credentials
@@ -13,7 +13,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             User adminUser = new User();
             adminUser.setEmail("admin@flipfit.com");
             adminUser.setPassword("admin123");
-            adminUser.setUserName("Admin");
+            adminUser.setName("Admin");
             return adminUser;
         }
 
@@ -24,7 +24,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             User user = new User();
             user.setEmail("admin@example.com");
             user.setPassword("pass");
-            user.setUserName("Example Admin");
+            user.setName("Example Admin");
             return user;
         }
         return null;
