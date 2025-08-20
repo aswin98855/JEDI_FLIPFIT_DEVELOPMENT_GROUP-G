@@ -43,8 +43,6 @@ public class ApplicationClient {
         else {
             System.out.println("Invalid Role");
         }
-
-        System.out.println("Application Exited");
     }
 
     public void registerCustomer() {
@@ -64,7 +62,6 @@ public class ApplicationClient {
         System.out.println("Registration received for customer: " + name);
         authenticationService.registerCustomer(name, email, password, phone);
         System.out.println("Registration Successful");
-        System.out.println("Application Exited");
     }
 
     public void registerOwner() {
@@ -93,6 +90,5 @@ public class ApplicationClient {
         System.out.println("Registration received for Owner: " + name);
         authenticationService.registerGymOwner(name, email, password, phone, aadhaar, pan, gst);
         System.out.println("Registration Successful");
-        System.out.println("Application Exited");
     }
 }
